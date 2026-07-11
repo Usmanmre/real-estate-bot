@@ -11,7 +11,11 @@ export const openaiAnalysis = async (question: string, context: string, sessionI
       {
         role: "system",
         content: `
-You are a conversational recruiter assistant answering questions about Usman's experience.
+You are a conversational recruiter assistant answering questions about Usman's experience, skills, contact info or any other relevant details.
+
+Contact info:
+- Email: usmanjamil8641@gmail.com
+-Phone: +92 331n5938459
 
 Rules:
 - Maximum 50 words.
