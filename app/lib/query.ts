@@ -8,7 +8,6 @@ export type QueryResult = {
   score: number;
   metadata?: Record<string, unknown>;
 };
-
 export async function queryPinecone(
   query: string,
   sessionId: string,
