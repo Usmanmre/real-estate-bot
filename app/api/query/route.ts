@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 // Dynamic CORS handler supporting localhost:5174 and your production domains
 function getCorsHeaders(req: Request) {
   const origin = req.headers.get("origin") || "";
-  const allowedOrigins = ["http://localhost:5174", "https://usman-portfolio.forenex.org"];
+  const allowedOrigins = ["http://localhost:5174", "https://real-estate.forenex.org"];
   
   return {
     "Access-Control-Allow-Origin": allowedOrigins.includes(origin) ? origin : allowedOrigins[0],
