@@ -20,7 +20,7 @@ export function addMessage(
   history.push(message);
 
   // Keep only recent messages
-  const recentHistory = history.slice(-6);
+  const recentHistory = history.slice(-20);
 
   conversations.set(sessionId, recentHistory);
 }

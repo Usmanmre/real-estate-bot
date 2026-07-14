@@ -1,5 +1,3 @@
-import { createEmbedding } from "./embedding";
-import { index } from "./Creds";
 import { openaiAnalysis } from "./openai";
 import { addMessage } from "./memory";
 
@@ -14,25 +12,14 @@ export async function queryPinecone(
   topK = 3,
 ) {
   try {
-    const vector = await createEmbedding(query);
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const results = await index.query({
-      vector: vector,
-      topK: topK,
-      includeMetadata: true,
-    //   filter: {
-    //     resumeId: { $eq: resumeId },
-    //   },
-    });
-   const openaiResponse = await openaiAnalysis(query, JSON.stringify(results), sessionId);
+   const openaiResponse = await openaiAnalysis(query, sessionId);
    addMessage(sessionId, { role: "assistant", content: openaiResponse });
-    return openaiResponse;
+    return {response: openaiResponse};
   } catch (err: unknown) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const e = err as any;
     console.error("queryPinecone error:", e?.message ?? e);
-    return [];
+    return {response: "Sorry, something went wrong. Please try again."};
   }
 }
 
